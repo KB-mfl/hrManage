@@ -9,7 +9,7 @@ git clone
     git checkout 自己分支
 
 
-安装依赖
+安装依赖//注意这个是在web文件里安装，首先要cd web
 yarn install
 
 
