@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Modal } from "antd";
-import "./index.less";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,7 +18,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Button type="primary" onClick={this.changeVisible}>
-          adhas
+          按钮
         </Button>
         <Modal
           visible={this.state.visible}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 
 export default class Admin extends React.Component {
   constructor(props) {
@@ -9,6 +10,6 @@ export default class Admin extends React.Component {
   }
 
   render() {
-    return <div>admin</div>;
+    return <Button type="primary">admin</Button>;
   }
 }
