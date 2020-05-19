@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal } from "antd";
-import "./index.css";
+import "./index.less";
 
 export default class App extends React.Component {
   constructor(props) {
