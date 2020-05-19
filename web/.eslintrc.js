@@ -8,6 +8,7 @@ module.exports = {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
+  parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -31,11 +32,13 @@ module.exports = {
     "react/self-closing-comp": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "import/no-named-as-default":"off",
     "import/no-named-as-default-member": "off",
     "import/no-unresolved": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "no-else-return": "off",
     "no-param-reassign": "off",
+    "react/destructuring-assignment":'off',//结构赋值关闭
   },
 };
