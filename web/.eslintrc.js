@@ -39,6 +39,7 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "no-else-return": "off",
     "no-param-reassign": "off",
+    "react/no-access-state-in-setstate":'off',
     "react/destructuring-assignment":'off',//结构赋值关闭
   },
 };
