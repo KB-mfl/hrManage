@@ -1,3 +1,5 @@
+// /* eslint-disable prettier/prettier */
+/* eslint-disable react/no-unused-state */
 import React from "react";
 import { Button } from "antd";
 
@@ -8,7 +10,7 @@ export default class Admin extends React.Component {
       visiable: null,
     };
   }
-
+  
   render() {
     return <Button type="primary">admin</Button>;
   }
