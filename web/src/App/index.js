@@ -1,85 +1,134 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import { Layout, Menu, Icon, Drawer, Button } from "antd";
+import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 import headBarModuleData from "../Mock/tourist/headBarModuleData";
+import Notification from "../Component/Notification/Notification";
+import Square from "../Component/Square/Square";
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider, Footer } = Layout;
+const { Header, Content, Footer } = Layout;
+const headBar = headBarModuleData;
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-      collapsed: false,
     };
-    // this.changeVisible = this.changeVisible.bind(this);
   }
 
-  changeVisible = () => {
+  showDrawer = () => {
     this.setState({ visible: true });
   };
 
-  onCollapse = (collapsed) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
+  onClose = () => {
+    this.setState({ visible: false });
+  };
+
+  getDefaultKeys = () => {
+    console.log("1");
+    return window.location.pathname.split("/")[1];
   };
 
   render() {
+    const siderBar = [
+      {
+        name: "用户",
+        type: "user",
+        key: "0",
+      },
+      {
+        name: "记录",
+        type: "video-camera",
+        key: "1",
+      },
+      {
+        name: "文件上传",
+        type: "upload",
+        key: "2",
+      },
+    ];
     return (
       <div>
-        <Layout style={{ minHeight: "100vh" }}>
-          <Header className="header">
-            <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={["0"]}
-              style={{ lineHeight: "64px" }}
-            >
-              {headBarModuleData.map((o) => {
-                return <Menu.Item key={o.index}>{o.moduleName}</Menu.Item>;
-              })}
-            </Menu>
-          </Header>
-          <Layout>
-            <Sider width={200} style={{ background: "#fff" }}>
+        <BrowserRouter>
+          <Layout style={{ minHeight: "100vh" }}>
+            <Header className="header">
               <Menu
-                theme="light"
-                mode="inline"
-                defaultSelectedKeys={["1"]}
-                defaultOpenKeys={["sub1"]}
-                style={{ height: "100%", borderRight: 0 }}
+                theme="dark"
+                mode="horizontal"
+                defaultSelectedKeys={[this.getDefaultKeys()]}
+                style={{ lineHeight: "64px" }}
               >
-                <Menu.Item key="1">
-                  <Icon type="user" />
-                  <span>nav 1</span>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Icon type="video-camera" />
-                  <span>nav 2</span>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Icon type="upload" />
-                  <span>nav 3</span>
-                </Menu.Item>
+                {headBar.map((o) => {
+                  return (
+                    <Menu.Item key={o.key}>
+                      <Link to={`/${o.key}`} />
+                      <span>{o.moduleName}</span>
+                    </Menu.Item>
+                  );
+                })}
               </Menu>
-            </Sider>
-            <Layout style={{ padding: "10px 24px 24px" }}>
-              <Content
-                style={{
-                  background: "#fff",
-                  padding: 24,
-                  margin: 0,
-                  minHeight: 280,
-                }}
+              <Button
+                type="primary"
+                style={{ float: "right", marginTop: -50, right: -30 }}
+                onClick={this.showDrawer}
               >
-                Content
-              </Content>
-              <Footer style={{ textAlign: "center" }}>
-                hr manage ©2020 Created by qk
-              </Footer>
+                设 置<Icon type="menu" />
+              </Button>
+              <div>
+                <Drawer
+                  title={window.loginId ? "设置选项" : "设置选项（未登录）"}
+                  placement="right"
+                  closable={false}
+                  onClose={this.onClose}
+                  visible={this.state.visible}
+                >
+                  <Menu
+                    theme="light"
+                    mode="inline"
+                    style={{ height: "100%", borderRight: 0 }}
+                  >
+                    {siderBar.map((o) => {
+                      return (
+                        <Menu.Item key={o.key}>
+                          <Icon type={o.type} />
+                          <span>{o.name}</span>
+                        </Menu.Item>
+                      );
+                    })}
+                  </Menu>
+                </Drawer>
+              </div>
+            </Header>
+            <Layout>
+              <Layout style={{ padding: "10px 24px 24px" }}>
+                <Content
+                  style={{
+                    background: "#fff",
+                    padding: 24,
+                    margin: 0,
+                    minHeight: 280,
+                  }}
+                >
+                  <Switch>
+                    <Route
+                      exact
+                      path="/"
+                      component={() => <Redirect to="/homePage" />}
+                    />
+                    <Route exact path="/square" component={Square} />
+                    <Route
+                      exact
+                      path="/notification"
+                      component={Notification}
+                    />
+                  </Switch>
+                </Content>
+                <Footer style={{ textAlign: "center" }}>
+                  hr manage ©2020 Created by qk
+                </Footer>
+              </Layout>
             </Layout>
           </Layout>
-        </Layout>
+        </BrowserRouter>
       </div>
     );
   }

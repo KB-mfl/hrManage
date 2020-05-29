@@ -1,10 +1,17 @@
 export default [
   {
-    moduleName: "广场",
+    key: "homePage",
+    moduleName: "首页",
     index: 0,
   },
   {
-    moduleName: "通知",
+    key: "square",
+    moduleName: "广场",
     index: 1,
+  },
+  {
+    key: "notification",
+    moduleName: "通知",
+    idnex: 2,
   },
 ];
