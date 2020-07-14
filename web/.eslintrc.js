@@ -35,6 +35,7 @@ module.exports = {
     "import/no-named-as-default":"off",
     "import/no-named-as-default-member": "off",
     "import/no-unresolved": "off",
+    "import/prefer-default-export":"off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "no-else-return": "off",

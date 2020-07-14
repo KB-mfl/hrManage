@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 import headBarModuleData from "../Mock/tourist/headBarModuleData";
 import Notification from "../Component/Notification/Notification";
 import Square from "../Component/Square/Square";
+import { sideBar } from "./const/sideBar";
 
 const { Header, Content, Footer } = Layout;
 const headBar = headBarModuleData;
@@ -24,28 +25,10 @@ export default class App extends React.Component {
   };
 
   getDefaultKeys = () => {
-    console.log("1");
     return window.location.pathname.split("/")[1];
   };
 
   render() {
-    const siderBar = [
-      {
-        name: "用户",
-        type: "user",
-        key: "0",
-      },
-      {
-        name: "记录",
-        type: "video-camera",
-        key: "1",
-      },
-      {
-        name: "文件上传",
-        type: "upload",
-        key: "2",
-      },
-    ];
     return (
       <div>
         <BrowserRouter>
@@ -86,7 +69,7 @@ export default class App extends React.Component {
                     mode="inline"
                     style={{ height: "100%", borderRight: 0 }}
                   >
-                    {siderBar.map((o) => {
+                    {sideBar.map((o) => {
                       return (
                         <Menu.Item key={o.key}>
                           <Icon type={o.type} />
@@ -123,7 +106,7 @@ export default class App extends React.Component {
                   </Switch>
                 </Content>
                 <Footer style={{ textAlign: "center" }}>
-                  hr manage ©2020 Created by qk
+                  welcome to kobe show
                 </Footer>
               </Layout>
             </Layout>
